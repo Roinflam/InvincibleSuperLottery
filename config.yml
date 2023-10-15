@@ -1,0 +1,67 @@
+#时间设置（单位：秒）
+Bet:
+  #每一轮开始后，下注开始时间
+  StartBettingTime: 600
+  #下注时间到后多少秒开始停止下注（不想停止下注可以改成0）
+  StopBettingTime: 1500
+  #每一轮开始后，开奖时间（一次赌博整个流程的时长）
+  DrawTime: 1800
+
+#开奖前提示信息设置
+Countdown:
+  '120': '&6「&e超级&4无敌&d大乐透&6」&a还有120秒开奖！'
+  '30': '&6「&e超级&4无敌&d大乐透&6」&a还有30秒开奖！'
+  '10': '&6「&e超级&4无敌&d大乐透&6」&a还有10秒开奖！'
+  '3': '&6「&e超级&4无敌&d大乐透&6」&a还有3秒开奖！'
+  '2': '&6「&e超级&4无敌&d大乐透&6」&a还有2秒开奖！'
+  '1': '&6「&e超级&4无敌&d大乐透&6」&a还有1秒开奖！'
+
+
+#赔率设置
+Odds:
+  #单双的赔率1：？
+  OddAndEven: 2
+  #大小的赔率1：？
+  GuessingSize: 3
+  #数字范围赔率1：？
+  NumberRangeOdds: 9
+  #指定数字赔率1：？（能中就有鬼了，别觉得默认太高了）
+  NumberOdds: 99
+
+#下注类型设置
+BetType:
+  #是否开启物品下注
+  Item: true
+  #物品下注是生存服还是RPG服，如果为true则兼容生存服，只要type和子id对就是可下注物品，如果为false只有一模一样才能下注物品
+  Range: true
+  #一次最大下注多少游戏币（设置为0则不启用）
+  Money: 99999
+  #一次最大下注多少点经验（设置为0则不启用）
+  Exp: 999999
+
+#重复下注设置
+RepeatedGambling:
+  #是否让下注获得的物品无法再次下注
+  Repeated: true
+  #设置Lore的样式
+  RepeatedLore:
+    - '&b「&e超级&4无敌&d大乐透&6奖品&b」'
+
+
+#黑箱操控设置（指令操控下一次号码、立刻开奖等）
+BackstageOperation:
+  #默认通吃概率
+  WinnerTakeProbability: 5%
+  #每个当有个人下注，增加的通吃概率
+  ExtraWinnerTakeProbability: 1%
+
+  #开奖多少次通吃一次（999999为不启用）
+  BetTimeWinnerTake: 999999
+
+  #每n次开奖增加当前通吃几率
+  WinnerTakeProbabilityTime: 3
+  #增加的概率
+  AddWinnerTakeProbabilityTime: 10%
+
+  #最大通吃概率
+  MaxWinnerTakeProbability: 50%

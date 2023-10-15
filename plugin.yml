@@ -1,0 +1,18 @@
+name: InvincibleSuperLottery
+main: pers.tany.invinciblesuperlottery.Main
+version: 1.0.0
+author: tany
+depend: [ YukiNoaAPI ]
+api-version: 1.13
+description: 博彩大乐透下注
+commands:
+  InvincibleSuperLottery:
+    usage: /InvincibleSuperLottery
+    aliases: [ isl ]
+permissions:
+  isl.bet:
+    default: true
+  isl.list:
+    default: true
+  isl.draw:
+    default: true
