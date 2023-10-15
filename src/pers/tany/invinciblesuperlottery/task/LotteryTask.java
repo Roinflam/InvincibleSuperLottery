@@ -127,7 +127,7 @@ public class LotteryTask extends BukkitRunnable {
                     }
                 } else if (betType.equals(BetInterface.BetType.GUESSING_SIZE)) {
                     boolean guessingSize = (boolean) value;
-                    if ((!guessingSize && random >= 1 && random <= 33) || (guessingSize && random >= 67 && random <= 99)) {
+                    if ((!guessingSize && random >= 0 && random <= 322) || (guessingSize && random >= 66 && random <= 98)) {
                         giveReward(name, Main.config.getInt("Odds.GuessingSize"));
                         List<String> list = winnerMap.getOrDefault(betType, new ArrayList<>());
                         list.add(name);
