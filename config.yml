@@ -65,3 +65,6 @@ BackstageOperation:
 
   #最大通吃概率
   MaxWinnerTakeProbability: 50%
+
+
+#isl.bet、isl.list、isl.draw皆为对应指令权限

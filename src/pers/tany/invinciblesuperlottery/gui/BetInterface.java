@@ -1,7 +1,6 @@
 package pers.tany.invinciblesuperlottery.gui;
 
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.HandlerList;
@@ -80,9 +79,19 @@ public class BetInterface implements InventoryHolder, Listener {
         IItemBuilder big = WoolUtil.getWool(4);
         IItemBuilder number = WoolUtil.getWool(14);
 
-        IItemBuilder money = new ItemBuilder(Material.GOLD_INGOT);
-        IItemBuilder exp = new ItemBuilder(Material.EXP_BOTTLE);
-        IItemBuilder item = new ItemBuilder(Material.STORAGE_MINECART);
+        IItemBuilder money = new ItemBuilder("GOLD_INGOT");
+        IItemBuilder exp;
+        try {
+            exp = new ItemBuilder("EXP_BOTTLE");
+        } catch (Exception e) {
+            exp = new ItemBuilder("EXPERIENCE_BOTTLE");
+        }
+        IItemBuilder item;
+        try {
+            item = new ItemBuilder("STORAGE_MINECART");
+        } catch (Exception e) {
+            item = new ItemBuilder("CHEST_MINECRAFT");
+        }
 
         frame.setDisplayName(Main.message.getString("Gui.HelpName")).setLore(Main.message.getStringList("Gui.HelpLore"));
         odd.setDisplayName(Main.message.getString("Gui.OddName")).setLore(Main.message.getStringList("Gui.OddLore"));
