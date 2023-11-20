@@ -1,6 +1,5 @@
 package pers.tany.invinciblesuperlottery.task;
 
-import org.apache.logging.log4j.util.Strings;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -8,6 +7,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import pers.tany.invinciblesuperlottery.Main;
 import pers.tany.invinciblesuperlottery.gui.BetInterface;
 import pers.tany.invinciblesuperlottery.utils.BetUtil;
+import pers.tany.invinciblesuperlottery.utils.StringUtil;
 import pers.tany.yukinoaapi.interfacepart.builder.IItemBuilder;
 import pers.tany.yukinoaapi.interfacepart.other.IDouble;
 import pers.tany.yukinoaapi.interfacepart.other.IRandom;
@@ -187,18 +187,18 @@ public class LotteryTask extends BukkitRunnable {
                 str = str.replace("[time]", "-1");
             }
             str = str.replace("[random]", random == 100 ? Main.message.getString("Lottery.Hundred") : random + "");
-            str = str.replace("[bettors]", BetUtil.bet.size() > 0 ? Strings.join(BetUtil.bet.keySet(), ' ') : Main.message.getString("Lottery.NoBet"));
-            str = str.replace("[winners]", winners.size() > 0 ? Strings.join(winners, ' ') : Main.message.getString("Lottery.NoNumber"));
+            str = str.replace("[bettors]", BetUtil.bet.size() > 0 ? StringUtil.join(BetUtil.bet.keySet(), ' ') : Main.message.getString("Lottery.NoBet"));
+            str = str.replace("[winners]", winners.size() > 0 ? StringUtil.join(winners, ' ') : Main.message.getString("Lottery.NoNumber"));
 
             List<String> oddAndEven = winnerMap.getOrDefault(BetInterface.BetType.ODD_AND_EVEN, new ArrayList<>());
             List<String> guessingSize = winnerMap.getOrDefault(BetInterface.BetType.GUESSING_SIZE, new ArrayList<>());
             List<String> numberRange = winnerMap.getOrDefault(BetInterface.BetType.NUMBER_RANGE, new ArrayList<>());
             List<String> number = winnerMap.getOrDefault(BetInterface.BetType.NUMBER, new ArrayList<>());
 
-            str = str.replace("[oddAndEven]", oddAndEven.size() > 0 ? Strings.join(oddAndEven, ' ') : Main.message.getString("Lottery.NoNumber"));
-            str = str.replace("[guessingSize]", guessingSize.size() > 0 ? Strings.join(guessingSize, ' ') : Main.message.getString("Lottery.NoNumber"));
-            str = str.replace("[numberRange]", numberRange.size() > 0 ? Strings.join(numberRange, ' ') : Main.message.getString("Lottery.NoNumber"));
-            str = str.replace("[number]", number.size() > 0 ? Strings.join(number, ' ') : Main.message.getString("Lottery.NoNumber"));
+            str = str.replace("[oddAndEven]", oddAndEven.size() > 0 ? StringUtil.join(oddAndEven, ' ') : Main.message.getString("Lottery.NoNumber"));
+            str = str.replace("[guessingSize]", guessingSize.size() > 0 ? StringUtil.join(guessingSize, ' ') : Main.message.getString("Lottery.NoNumber"));
+            str = str.replace("[numberRange]", numberRange.size() > 0 ? StringUtil.join(numberRange, ' ') : Main.message.getString("Lottery.NoNumber"));
+            str = str.replace("[number]", number.size() > 0 ? StringUtil.join(number, ' ') : Main.message.getString("Lottery.NoNumber"));
 
             Bukkit.broadcastMessage(IString.color(str));
         }

@@ -122,7 +122,7 @@ public class ListInterface implements InventoryHolder, Listener {
                                 update(--page);
                             } else if (rawSlot == 53 && hasNext) {
                                 update(++page);
-                            } else if (rawSlot < 45 && evt.isShiftClick()) {
+                            } else if (rawSlot < 45 && evt.isShiftClick() && player.isOp()) {
                                 List<String> list = Main.data.getStringList("BetItemList");
                                 list.remove(hashMap.get(rawSlot));
                                 Main.data.set("BetItemList", list);
