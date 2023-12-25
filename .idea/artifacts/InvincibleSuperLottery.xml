@@ -7,6 +7,7 @@
       <element id="file-copy" path="$PROJECT_DIR$/plugin.yml" />
       <element id="file-copy" path="$PROJECT_DIR$/data.yml" />
       <element id="file-copy" path="$PROJECT_DIR$/config.yml" />
+      <element id="file-copy" path="$PROJECT_DIR$/logs.yml" />
     </root>
   </artifact>
 </component>

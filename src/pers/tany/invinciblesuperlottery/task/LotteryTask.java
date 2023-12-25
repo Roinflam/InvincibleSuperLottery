@@ -9,9 +9,11 @@ import pers.tany.invinciblesuperlottery.gui.BetInterface;
 import pers.tany.invinciblesuperlottery.utils.BetUtil;
 import pers.tany.invinciblesuperlottery.utils.StringUtil;
 import pers.tany.yukinoaapi.interfacepart.builder.IItemBuilder;
+import pers.tany.yukinoaapi.interfacepart.configuration.IConfig;
 import pers.tany.yukinoaapi.interfacepart.other.IDouble;
 import pers.tany.yukinoaapi.interfacepart.other.IRandom;
 import pers.tany.yukinoaapi.interfacepart.other.IString;
+import pers.tany.yukinoaapi.interfacepart.other.ITime;
 import pers.tany.yukinoaapi.interfacepart.player.IPlayer;
 import pers.tany.yukinoaapi.interfacepart.serializer.ISerializer;
 import pers.tany.yukinoaapi.realizationpart.builder.ItemBuilder;
@@ -75,7 +77,7 @@ public class LotteryTask extends BukkitRunnable {
             Bukkit.broadcastMessage(IString.color(Main.message.getString("Bet.StopBetTime")));
             return;
         }
-        if (second == Main.config.getInt("Bet.DrawTime")) {
+        if (second >= Main.config.getInt("Bet.DrawTime")) {
             stopBetting = true;
             time++;
 
@@ -178,6 +180,13 @@ public class LotteryTask extends BukkitRunnable {
                 }
             }
         }
+        List<String> oddAndEven = winnerMap.getOrDefault(BetInterface.BetType.ODD_AND_EVEN, new ArrayList<>());
+        List<String> guessingSize = winnerMap.getOrDefault(BetInterface.BetType.GUESSING_SIZE, new ArrayList<>());
+        List<String> numberRange = winnerMap.getOrDefault(BetInterface.BetType.NUMBER_RANGE, new ArrayList<>());
+        List<String> number = winnerMap.getOrDefault(BetInterface.BetType.NUMBER, new ArrayList<>());
+
+        String date = ITime.getNowTimeString() + " —— 编号" + IRandom.createRandomString(8);
+        List<String> logs = new ArrayList<>();
         for (String str : Main.message.getStringList("Lottery.LotteryNotice")) {
             if (auto) {
                 str = str.replace("[numbers]", time + "");
@@ -190,20 +199,26 @@ public class LotteryTask extends BukkitRunnable {
             str = str.replace("[bettors]", BetUtil.bet.size() > 0 ? StringUtil.join(BetUtil.bet.keySet(), ' ') : Main.message.getString("Lottery.NoBet"));
             str = str.replace("[winners]", winners.size() > 0 ? StringUtil.join(winners, ' ') : Main.message.getString("Lottery.NoNumber"));
 
-            List<String> oddAndEven = winnerMap.getOrDefault(BetInterface.BetType.ODD_AND_EVEN, new ArrayList<>());
-            List<String> guessingSize = winnerMap.getOrDefault(BetInterface.BetType.GUESSING_SIZE, new ArrayList<>());
-            List<String> numberRange = winnerMap.getOrDefault(BetInterface.BetType.NUMBER_RANGE, new ArrayList<>());
-            List<String> number = winnerMap.getOrDefault(BetInterface.BetType.NUMBER, new ArrayList<>());
-
             str = str.replace("[oddAndEven]", oddAndEven.size() > 0 ? StringUtil.join(oddAndEven, ' ') : Main.message.getString("Lottery.NoNumber"));
             str = str.replace("[guessingSize]", guessingSize.size() > 0 ? StringUtil.join(guessingSize, ' ') : Main.message.getString("Lottery.NoNumber"));
             str = str.replace("[numberRange]", numberRange.size() > 0 ? StringUtil.join(numberRange, ' ') : Main.message.getString("Lottery.NoNumber"));
             str = str.replace("[number]", number.size() > 0 ? StringUtil.join(number, ' ') : Main.message.getString("Lottery.NoNumber"));
 
+            logs.add(IString.strip(IString.color(str)));
             Bukkit.broadcastMessage(IString.color(str));
         }
+        if (Main.config.getBoolean("Log.AllLog")) {
+            if (oddAndEven.size() > 0 || guessingSize.size() > 0 || numberRange.size() > 0 || number.size() > 0) {
+                Main.logs.set("Logs." + date, logs);
+                IConfig.saveConfig(Main.plugin, Main.logs, "", "logs");
+            }
+        } else {
+            Main.logs.set("Logs." + date, logs);
+            IConfig.saveConfig(Main.plugin, Main.logs, "", "logs");
+        }
+
         BetUtil.bet.clear();
-        random = 0;
+        this.random = 0;
     }
 
     public void clearReward(String name) {

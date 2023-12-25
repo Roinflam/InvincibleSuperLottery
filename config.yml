@@ -47,6 +47,12 @@ RepeatedGambling:
   RepeatedLore:
     - '&b「&e超级&4无敌&d大乐透&b」'
 
+#开奖日志记录
+Log:
+  #是否记录开奖
+  Log: true
+  #是否记录没有任何人中奖的开奖信息
+  AllLog: false
 
 #黑箱操控设置（指令操控下一次号码、立刻开奖等）
 BackstageOperation:

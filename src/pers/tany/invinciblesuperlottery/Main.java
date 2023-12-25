@@ -20,6 +20,7 @@ public class Main extends JavaPlugin {
     public static YamlConfiguration config;
     public static YamlConfiguration data;
     public static YamlConfiguration message;
+    public static YamlConfiguration logs;
     public static Economy economy;
 
     @Override
@@ -39,10 +40,12 @@ public class Main extends JavaPlugin {
         IConfig.createResource(this, "", "config.yml", false);
         IConfig.createResource(this, "", "data.yml", false);
         IConfig.createResource(this, "", "message.yml", false);
+        IConfig.createResource(this, "", "logs.yml", false);
 
         config = IConfig.loadConfig(this, "", "config");
         data = IConfig.loadConfig(this, "", "data");
         message = IConfig.loadConfig(this, "", "message");
+        logs = IConfig.loadConfig(this, "", "logs");
 
         IRegister.registerEvents(this, new Events());
         IRegister.registerCommands(this, "InvincibleSuperLottery", new Commands());

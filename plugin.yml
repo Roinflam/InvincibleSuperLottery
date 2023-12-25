@@ -1,6 +1,6 @@
 name: InvincibleSuperLottery
 main: pers.tany.invinciblesuperlottery.Main
-version: 1.0.1
+version: 1.0.2
 author: tany
 depend: [ YukiNoaAPI ]
 api-version: 1.13

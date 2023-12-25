@@ -39,6 +39,7 @@ public class Commands implements CommandExecutor {
                 Main.config = YamlConfiguration.loadConfiguration(new File(Main.plugin.getDataFolder(), "config.yml"));
                 Main.data = YamlConfiguration.loadConfiguration(new File(Main.plugin.getDataFolder(), "data.yml"));
                 Main.message = YamlConfiguration.loadConfiguration(new File(Main.plugin.getDataFolder(), "message.yml"));
+                Main.logs = YamlConfiguration.loadConfiguration(new File(Main.plugin.getDataFolder(), "logs.yml"));
                 sender.sendMessage("§a重载成功");
                 return true;
             }
